@@ -35,7 +35,6 @@ class Bot:
 	def run(self):  # Основная функция бота
 		for event in self.longpoll.listen():
 			if event.type == VkBotEventType.MESSAGE_NEW:
-				print(event.chat_id, event.object.message['from_id'], event.object.message['text'])
 				if event.chat_id == CHAT_ID:
 
 					user_id = event.object.message['from_id']

@@ -43,7 +43,7 @@ class Bot:
 					chat_id = event.chat_id
 
 					if msg == '/пробег':
-						self.sender(chat_id, f'Ваш пробег: {self.base.get_dist(user_id)} км.')
+						self.sender(chat_id, f'{self.get_user_name(user_id)}, ваш пробег: {self.base.get_dist(user_id)} км.')
 
 					elif msg == '/поехали':
 						if self.base.get_last_try(user_id):
@@ -54,16 +54,16 @@ class Bot:
 								else:
 									self.sender(chat_id, choice(
 										[
-											'Увы, ваш мотоцикл сломан, вы не проехали ни одного километра!',
-											'Вам не повезло(\nВаш транспорт заглох'
+											f'{self.get_user_name(user_id)}, увы, ваш мотоцикл сломан, вы не проехали ни одного километра!',
+											f'{self.get_user_name(user_id)}, вам не повезло(\nВаш транспорт заглох'
 										]
 									))
 								self.base.set_last(user_id)
 							else:
-								self.sender(chat_id, 'Ваш транспорт сломан!\nВы не можете ехать сегодня!')
+								self.sender(chat_id, f'{self.get_user_name(user_id)}, ваш транспорт сломан!\nВы не можете ехать сегодня!')
 								self.base.set_last(user_id)
 						else:
-							self.sender(chat_id, f'Вы уже использовали свою попытку сегодня!')
+							self.sender(chat_id, f'{self.get_user_name(user_id)}, вы уже использовали свою попытку сегодня!')
 
 					elif msg == '/топ':
 						ans = 'Топ пробега:'
